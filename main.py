@@ -1,8 +1,12 @@
 import pygame
 import cv2
 import numpy as np
+# from gpiozero import CPUTemperature
 
 from utils import c2ImageToSurface, CLR, TextPrint
+
+# temp = CPUTemperature()
+# print(temp.temperature)
 
 
 class Cap:
@@ -43,7 +47,7 @@ while not done:
         if event.type == pygame.JOYBUTTONUP:
             print("Joystick button released.")
 
-    screen.fill(CLR.WHITE)
+    screen.fill(CLR.MAGENTA)
     textPrint.reset()
 
     cap.draw(screen)
@@ -85,6 +89,6 @@ while not done:
     # cap.draw()
 
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(100)
 
 pygame.quit()
