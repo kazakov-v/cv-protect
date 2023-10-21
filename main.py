@@ -11,14 +11,14 @@ class Cap:
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
-    def draw(self):
+    def draw(self, my_screen):
         if self.cap.isOpened():
             res, img = self.cap.read()
             if res:
                 img = np.rot90(img)
                 img = cv2.resize(img, (1080, 1920))
                 img = img[600:1200, :].copy()
-                screen.blit(c2ImageToSurface(img), [0, 0])
+                my_screen.blit(c2ImageToSurface(img), [0, 0])
 
 
 pygame.init()
@@ -46,7 +46,7 @@ while not done:
     screen.fill(CLR.WHITE)
     textPrint.reset()
 
-    cap.draw()
+    cap.draw(screen)
 
     joystick_count = pygame.joystick.get_count()
     textPrint.print(screen, "Number of joysticks: {}".format(joystick_count))

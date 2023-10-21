@@ -29,10 +29,10 @@ class TextPrint(object):
         self.reset()
         self.x_pos = 10
         self.y_pos = 10
-        self.font = pygame.font.Font(None, 40)
+        self.font = pygame.font.Font(None, 20)
 
     def print(self, my_screen, text_string):
-        text_bitmap = self.font.render(text_string, True, CLR.RED)
+        text_bitmap = self.font.render(text_string, True, CLR.WHITE)
         my_screen.blit(text_bitmap, [self.x_pos, self.y_pos])
         self.y_pos += self.line_height
 
