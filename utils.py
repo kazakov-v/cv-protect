@@ -1,5 +1,5 @@
 import numpy as np
-import pygame
+import pygame as pg
 
 
 class CLR:
@@ -23,7 +23,7 @@ def c2ImageToSurface(cvImage):
     else:
         format = 'RGBA' if cvImage.shape[2] == 4 else 'RGB'
         cvImage[:, :, [0, 2]] = cvImage[:, :, [2, 0]]
-    surface = pygame.image.frombuffer(cvImage.flatten(), size, format)
+    surface = pg.image.frombuffer(cvImage.flatten(), size, format)
     return surface.convert_alpha() if format == 'RGBA' else surface.convert()
 
 
@@ -32,7 +32,7 @@ class TextPrint(object):
         self.reset()
         self.x_pos = 10
         self.y_pos = 10
-        self.font = pygame.font.Font(None, 20)
+        self.font = pg.font.Font(None, 20)
 
     def print(self, my_screen, text_string):
         text_bitmap = self.font.render(text_string, True, CLR.WHITE)

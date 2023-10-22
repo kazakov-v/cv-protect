@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 import cv2
 import numpy as np
 # from gpiozero import CPUTemperature
@@ -25,26 +25,26 @@ class Cap:
                 my_screen.blit(c2ImageToSurface(img), [0, 0])
 
 
-pygame.init()
-# screen = pygame.display.set_mode([1024, 600], pygame.FULLSCREEN)
-screen = pygame.display.set_mode([1024, 600])
-pygame.display.set_caption("main")
+pg.init()
+# screen = pg.display.set_mode([1024, 600], pg.FULLSCREEN)
+screen = pg.display.set_mode([1024, 600])
+pg.display.set_caption("main")
 done = False
-clock = pygame.time.Clock()
-pygame.joystick.init()
+clock = pg.time.Clock()
+pg.joystick.init()
 textPrint = TextPrint()
 cap = Cap()
 
 while not done:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
             done = True
-        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
+        if pg.key.get_pressed()[pg.K_ESCAPE]:
             done = True
 
-        if event.type == pygame.JOYBUTTONDOWN:
+        if event.type == pg.JOYBUTTONDOWN:
             print("Joystick button pressed.")
-        if event.type == pygame.JOYBUTTONUP:
+        if event.type == pg.JOYBUTTONUP:
             print("Joystick button released.")
 
     screen.fill(CLR.MAGENTA)
@@ -52,12 +52,12 @@ while not done:
 
     cap.draw(screen)
 
-    joystick_count = pygame.joystick.get_count()
+    joystick_count = pg.joystick.get_count()
     textPrint.print(screen, "Number of joysticks: {}".format(joystick_count))
     textPrint.indent()
 
     for i in range(joystick_count):
-        joystick = pygame.joystick.Joystick(i)
+        joystick = pg.joystick.Joystick(i)
         joystick.init()
         textPrint.print(screen, "Joystick {}".format(i))
         textPrint.indent()
@@ -88,7 +88,7 @@ while not done:
 
     # cap.draw()
 
-    pygame.display.flip()
+    pg.display.flip()
     clock.tick(100)
 
-pygame.quit()
+pg.quit()
