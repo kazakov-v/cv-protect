@@ -71,7 +71,7 @@ class Cap:
                     x, y = self.data[self.edit]
                     img = cv2.rectangle(
                         img, (x-25, y-25), (x+25, y+25),
-                        (255, 255, 0), 5
+                        (255, 255, 0), 7
                     )
                 if self.mode == 'move':
                     clr = (0, 0, 255)
